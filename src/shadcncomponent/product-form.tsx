@@ -45,31 +45,7 @@ export  function ProductComponent() {
   },[loginUserEmail])
 
 
-    // const handleImage = (e:any)=>{
-    //     setSelectFile(e.target.files[0])
-    // }
-
-  //  const handlePost = async()=>{
-  //   try{
-  //       const result = await fetch('http://localhost:3001/users',{
-  //           method:'POST',
-  //           headers:{
-  //               'Content-type':'application/json'
-  //           },
-  //           body: JSON.stringify({productName,price,selectFile,description})
-  //       })
-
-  //       if(result.ok){
-  //           const data = result.json()
-  //           console.log('uploadStatus',data)
-  //       }
-  //   }catch(error:any){
-  //       console.log('error',error.message)
-  //   }
-  //  }
-
-
-
+  
 
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
