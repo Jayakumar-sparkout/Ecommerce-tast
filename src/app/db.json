@@ -1,0 +1,332 @@
+{
+  "users": [
+    {
+      "firstName": "jayakumarv",
+      "email": "asdfgh@gmail.com",
+      "phone": 7358906752,
+      "password": "111111",
+      "id": "4221",
+      "img": "../../public/edit.png",
+      "address": "asdfghjk",
+      "age": 22
+    },
+    {
+      "id": "5c6c",
+      "firstName": "jayakumar",
+      "email": "kumar@gmail.com",
+      "phone": 3456789456,
+      "password": "asdfgh"
+    },
+    {
+      "id": "024b",
+      "firstName": "jayakumar",
+      "email": "sdfgh@gmail.com",
+      "phone": 2345678911,
+      "password": "sdfghjkl"
+    },
+    {
+      "id": "6c3d",
+      "firstName": "muthukumar",
+      "email": "fghj@gmail.com",
+      "phone": 2345678922,
+      "password": "sdfghjk"
+    },
+    {
+      "id": "4293",
+      "firstName": "harshinniR",
+      "lastName": "",
+      "email": "harshinnir@gmail.com",
+      "phone": 3456789111,
+      "password": "dfghjk",
+      "address": "asdfghjk",
+      "age": 23
+    },
+    {
+      "id": "c591",
+      "firstName": "muthukumar",
+      "email": "muthu@gmail.com",
+      "phone": 1234567888,
+      "password": "muthu@2003"
+    },
+    {
+      "id": "ab2c",
+      "firstName": "asdfghj",
+      "email": "ildfghj@gmail.com",
+      "phone": 1234567890,
+      "password": "asdfghjk"
+    },
+    {
+      "id": "789a",
+      "firstName": "mathesh",
+      "email": "mathesh@gmail.com",
+      "phone": 1234567888,
+      "password": "mathesh2002"
+    },
+    {
+      "id": "f1fc",
+      "firstName": "kjh",
+      "lastName": "",
+      "email": "jhjhjh@kj.ccc",
+      "phone": 99009095,
+      "password": "Test@1"
+    },
+    {
+      "id": "99cb",
+      "productName": "sdfghjk",
+      "price": 22218,
+      "selectFile": {},
+      "description": "dfghjkl",
+      "firstName": "muthukumar",
+      "password": "jaya2003",
+      "email": "kumar@gmail.com",
+      "address": "asdfghjkl",
+      "age": 22
+    },
+    {
+      "id": "f766",
+      "productName": "dfghj",
+      "price": 65656,
+      "selectFile": {},
+      "description": "dfghjk",
+      "firstName": "jayakumarv",
+      "password": "muthukutty",
+      "email": "muthukumar143@gmail.com",
+      "address": "asdfghjk",
+      "age": 22
+    },
+    {
+      "id": "dfa7",
+      "firstName": "vasantha",
+      "email": "vasantha@gmail.com",
+      "phone": 1234567888,
+      "password": "123456890",
+      "address": "qqwertyu",
+      "age": 22
+    },
+    {
+      "id": "27a2",
+      "firstName": "fazilkhanm",
+      "email": "fazilkhan@gmail.com",
+      "phone": 2345678902,
+      "password": "fazilkhan123",
+      "address": "sdoqwertyuio",
+      "age": 22,
+      "profileImage": "http://localhost:3000/edit.png",
+      "products": [
+        {
+          "Name": "keyboard",
+          "Amount": 1198,
+          "Description": "sdfghjkl",
+          "Offer": 12,
+          "Rating": 4
+        }
+      ]
+    },
+    {
+      "id": "9d54",
+      "productName": "mobile",
+      "price": 200,
+      "selectFile": {},
+      "description": "asdfghjkwerty",
+      "products": [
+        {
+          "Name": "television",
+          "Amount": 20000,
+          "Description": "asghjkl",
+          "Offer": 10,
+          "Rating": 5
+        }
+      ]
+    },
+    {
+      "id": "1aef",
+      "firstName": "jeeva",
+      "lastName": "",
+      "email": "jeeva@gmail.com",
+      "phone": 1234567887,
+      "password": "jeva123"
+    }
+  ],
+  "products": [
+    {
+      "Name": "Television",
+      "Amount": 20000,
+      "Description": "Smart LED TV with 4K display",
+      "Offer": 10,
+      "Rating": 5,
+      "image": "http://localhost:3000/tv.jpg",
+      "id": "bc7d"
+    },
+    {
+      "Name": "Mobile",
+      "Amount": 23000,
+      "Description": "Latest Android smartphone with 128GB storage",
+      "Offer": 8,
+      "Rating": 4,
+      "image": "http://localhost:3000/mobile.jpg",
+      "id": "30d3"
+    },
+    {
+      "Name": "Laptop",
+      "Amount": 55000,
+      "Description": "High performance laptop with Intel i7 processor",
+      "Offer": 12,
+      "Rating": 5,
+      "image": "http://localhost:3000/lap.jpg",
+      "id": "c378"
+    },
+    {
+      "Name": "Headphones",
+      "Amount": 2000,
+      "Description": "Wireless over-ear headphones with noise cancellation",
+      "Offer": 15,
+      "Rating": 4,
+      "image": "http://localhost:3000/headphones.jpg",
+      "id": "2f55"
+    },
+    {
+      "Name": "Smartwatch",
+      "Amount": 7000,
+      "Description": "Fitness tracker smartwatch with heart rate monitor",
+      "Offer": 10,
+      "Rating": 4,
+      "image": "http://localhost:3000/watch.jpg",
+      "id": "2c05"
+    },
+    {
+      "Name": "Tablet",
+      "Amount": 18000,
+      "Description": "10-inch tablet with stylus support",
+      "Offer": 9,
+      "Rating": 4,
+      "image": "http://localhost:3000/tablet.jpg",
+      "id": "bf67"
+    },
+    {
+      "Name": "Camera",
+      "Amount": 45000,
+      "Description": "DSLR camera with 24MP lens",
+      "Offer": 10,
+      "Rating": 5,
+      "image": "http://localhost:3000/camera.jpg",
+      "id": "a7ff"
+    },
+    {
+      "Name": "Refrigerator",
+      "Amount": 32000,
+      "Description": "Double door refrigerator with fast cooling",
+      "Offer": 11,
+      "Rating": 5,
+      "image": "http://localhost:3000/refrigirator.jpg",
+      "id": "b355"
+    },
+    {
+      "Name": "Microwave",
+      "Amount": 9000,
+      "Description": "Convection microwave oven with grill",
+      "Offer": 6,
+      "Rating": 4,
+      "image": "http://localhost:3000/micro.jpg",
+      "id": "a4df"
+    },
+    {
+      "Name": "Air Conditioner",
+      "Amount": 38000,
+      "Description": "1.5 ton split AC with inverter technology",
+      "Offer": 14,
+      "Rating": 5,
+      "image": "http://localhost:3000/ac.jpg",
+      "id": "3bea"
+    },
+    {
+      "Name": "Washing Machine",
+      "Amount": 25000,
+      "Description": "Front load washing machine with smart wash",
+      "Offer": 13,
+      "Rating": 4,
+      "image": "http://localhost:3000/wachine.jpg",
+      "id": "b356"
+    },
+    {
+      "Name": "Mixer Grinder",
+      "Amount": 4000,
+      "Description": "3-jar mixer grinder with juicer",
+      "Offer": 7,
+      "Rating": 4,
+      "image": "http://localhost:3000/mixer.jpg",
+      "id": "6c8e"
+    },
+    {
+      "Name": "Fan",
+      "Amount": 2500,
+      "Description": "Ceiling fan with 3-speed control",
+      "Offer": 5,
+      "Rating": 3,
+      "image": "http://localhost:3000/fan.png",
+      "id": "3748"
+    },
+    {
+      "Name": "Air Purifier",
+      "Amount": 12000,
+      "Description": "HEPA filter air purifier with 3 modes",
+      "Offer": 10,
+      "Rating": 4,
+      "image": "http://localhost:3000/air.jpg",
+      "id": "8477"
+    },
+    {
+      "Name": "Bluetooth Speaker",
+      "Amount": 3500,
+      "Description": "Portable Bluetooth speaker with deep bass",
+      "Offer": 9,
+      "Rating": 4,
+      "image": "http://localhost:3000/speaker.jpg",
+      "id": "1cb2"
+    },
+    {
+      "Name": "Gaming Console",
+      "Amount": 45000,
+      "Description": "Next-gen gaming console with wireless controller",
+      "Offer": 10,
+      "Rating": 5,
+      "image": "http://localhost:3000/game.jpg",
+      "id": "d045"
+    },
+    {
+      "Name": "Keyboard",
+      "Amount": 1500,
+      "Description": "Mechanical keyboard with RGB lighting",
+      "Offer": 8,
+      "Rating": 4,
+      "image": "http://localhost:3000/keyboard.jpg",
+      "id": "15ee"
+    },
+    {
+      "Name": "Mouse",
+      "Amount": 800,
+      "Description": "Wireless optical mouse with fast response",
+      "Offer": 6,
+      "Rating": 4,
+      "image": "http://localhost:3000/mouse.jpg",
+      "id": "7b7b"
+    },
+    {
+      "Name": "Printer",
+      "Amount": 12000,
+      "Description": "All-in-one inkjet printer with WiFi support",
+      "Offer": 11,
+      "Rating": 4,
+      "image": "http://localhost:3000/printer.jpg",
+      "id": "3bd5"
+    },
+    {
+      "Name": "Router",
+      "Amount": 2500,
+      "Description": "Dual band WiFi router with high speed",
+      "Offer": 10,
+      "Rating": 4,
+      "image": "http://localhost:3000/router.jpg",
+      "id": "c45a"
+    }
+  ]
+}

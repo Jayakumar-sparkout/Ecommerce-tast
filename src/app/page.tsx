@@ -1,103 +1,219 @@
-import Image from "next/image";
 
-export default function Home() {
+
+
+"use client";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { setUploadName, setProName, setProOffer, setProPrice, setProRating } from "@/slice/loginslice";
+import { useDispatch } from "react-redux";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
+import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { Spinner, type SpinnerProps } from '@/components/ui/shadcn-io/spinner';
+const variants: SpinnerProps['variant'][] = [
+  'bars',
+ 
+];
+const Page = () => {
+  const [products, setProducts] = useState<any[]>([]);
+  const [start, setStart] = useState<number>(0);
+  const limit = 4;
+  const [regLoading,setRegLoading]=useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [filter, setFilter] = useState<string | undefined>();
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const observerRef = useRef<HTMLDivElement | null>(null);
+  const [reLoading,setReLoading] = useState<boolean>(true)
+const [loadingId,setLoadingId]=useState<number | null>()
+  const dispatch = useDispatch();
+  const router = useRouter()
+ let ImageId;
+  const fetchProducts = async (startIndex: number) => {
+    if (loading || !hasMore) return;
+    setLoading(true);
+
+    try {
+      const res = await fetch(`http://localhost:3001/products?_start=${startIndex}&_limit=${limit}`);
+      const data = await res.json();
+
+      if (data.length === 0) {
+        setHasMore(false);
+      } else {
+        setProducts((prev) => [...prev, ...data]);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(start);
+  }, [start]);
+
+  useEffect(() => {
+    if (!observerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading && hasMore) {
+          setStart((prev) => prev + limit);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    observer.observe(observerRef.current);
+
+    return () => {
+      if (observerRef.current) observer.unobserve(observerRef.current);
+    };
+  }, [loading, hasMore]);
+  const filteredProducts = useMemo(() => {
+    let result = [...products];
+
+
+    if (searchQuery) {
+      result = result.filter((product) =>
+        product.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    if (filter === "low-high") {
+      result.sort((a, b) =>
+         a.Amount - b.Amount);
+    } else if (filter === "high-low") {
+      result.sort((a, b) => 
+        b.Amount - a.Amount);
+    }
+
+    return result;
+  }, [products, searchQuery, filter]);
+
+
+  const handleExplore = (e:any)=>{
+    
+          setReLoading(false)
+          setTimeout(()=>{
+            router.push('productCard')
+            setReLoading(true)
+          },4000)
+  }
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="p-6">
+      <div className="flex flex-wrap gap-4 justify-between items-center mb-6 mt-30">
+        <Input
+          placeholder="Search Products..."
+          className="max-w-sm"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <Select onValueChange={(val) => setFilter(val)}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by Price" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="low-high">Low → High</SelectItem>
+            <SelectItem value="high-low">High → Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+        {filteredProducts.map((product, index,id) => (
+          <Card className="shadow-sm flex flex-column flex-start mt-4" key={product.Name + index}>
+            <CardHeader className="pt-4 pb-2 px-5 font-semibold">
+              <h1>ProductName: {product.Name}</h1>
+            </CardHeader>
+
+            <CardContent className="text-[15px] text-muted-foreground px-5">
+              <p>Description: {product.Description}</p>
+              <div className="mt-3 w-full h-60 aspect-video bg-muted rounded-xl overflow-hidden">
+                <img src={product.image} alt={product.Name} className="w-full h-full object-cover" />
+              </div>
+              <label className="flex mt-2 gap-3 font-semibold">
+                Amount: <p className="font-semibold">${product.Amount}</p>
+              </label>
+
+              <div className="flex flex-col items-center gap-3">
+                <label htmlFor="rating" className="flex mt-2 gap-3 font-semibold">
+                  Rating
+                  <Rating defaultValue={product.Rating}>
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <RatingButton className="text-yellow-500" key={idx} value={idx + 1} />
+                    ))}
+                  </Rating>
+                </label>
+              </div>
+              <p>Offer: {product.Offer}%</p>
+            </CardContent>
+
+            <CardFooter>
+               
+
+
+                    <CardFooter>
+  {loadingId === product.id ? (
+    <div className="flex flex-col items-center justify-center gap-3 text-center">
+      {variants.map((variant) => (
+        <div
+          className="flex flex-col items-center justify-center gap-2"
+          key={variant}
+        >
+          <Spinner variant={variant} />
+          <span>please wait...</span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ))}
+    </div>
+  ) : (
+    <Button
+      className="cursor-pointer"
+      onClick={(e) => {
+        dispatch(setUploadName(product.image));
+        dispatch(setProName(product.Name));
+        dispatch(setProOffer(product.Offer));
+        dispatch(setProPrice(product.Amount));
+        dispatch(setProRating(product.Rating));
+        localStorage.setItem("proImage", product.image);
+
+        setLoadingId(product.id); 
+        setTimeout(() => {
+          setLoadingId(null);
+          router.push("/productCard");
+        }, 2000);
+      }}
+    >
+      Explore <ArrowRight className="ml-2" />
+    </Button>
+  )}
+</CardFooter>
+
+                
+            </CardFooter>
+          </Card> 
+        ))}
+
+        <div ref={observerRef} className="h-10 col-span-full"></div>
+
+        {loading && <p className="col-span-full text-center">Loading...</p>}
+        {!hasMore && <p className="col-span-full text-center text-gray-500">No more products</p>}
+      </div>
     </div>
   );
-}
+};
+
+export default Page;
+
+
+
+
+
+
